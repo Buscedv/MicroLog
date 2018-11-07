@@ -1,5 +1,5 @@
 # Micro Log
-# 1.0
+# 1.1
 # A simple terminal work/time log focused on speed, usability and flexibility.
 # Developed by: Edvard Busck-Nielsen 11.07.2018
 # GNU GPL v. 3.0
@@ -7,13 +7,14 @@
 import os
 import os.path
 import datetime
+import subprocess
 
 def open_log():
 	#open
 	today = input("Date for entry (format: year-day-month):")
-	filename = today+'.txt'
+	filename = today+'.log'
 	if os.path.isfile(filename):
-		open_cmd = "nano "+filename
+		open_cmd = "micro "+filename
 		os.system(open_cmd)
 		show_out_cmd = "cat "+filename
 		print ("\033[2m")
@@ -25,7 +26,7 @@ def open_log():
 	else:
 		with open(filename,"w+") as f:
 				f.write(today)
-		open_cmd = "nano "+filename
+		open_cmd = "micro "+filename
 		os.system(open_cmd)
 		show_out_cmd = "cat "+filename
 		print ("\033[2m")
@@ -40,7 +41,7 @@ def today():
 	today = datetime.datetime.now()
 	today = str(today.year)+'-'+str(today.day)+'-'+str(today.month)
 	if os.path.isfile(filename):
-		open_cmd = "nano "+filename
+		open_cmd = "micro "+filename
 		os.system(open_cmd)
 		show_out_cmd = "cat "+filename
 		print ("\033[2m")
@@ -52,7 +53,7 @@ def today():
 	else:
 		with open(filename,"w+") as f:
 				f.write(today)
-		open_cmd = "nano "+filename
+		open_cmd = "micro "+filename
 		os.system(open_cmd)
 		show_out_cmd = "cat "+filename
 		print ("\033[2m")
@@ -75,9 +76,9 @@ def new():
 		#today
 		today = datetime.datetime.now()
 		today = str(today.year)+'-'+str(today.day)+'-'+str(today.month)
-		filename = today+'.txt'
+		filename = today+'.log'
 		if os.path.isfile(filename):
-			open_cmd = "nano "+filename
+			open_cmd = "micro "+filename
 			os.system(open_cmd)
 			show_out_cmd = "cat "+filename
 			print ("\033[2m")
@@ -89,7 +90,7 @@ def new():
 		else:
 			with open(filename,"w+") as f:
 				f.write(today)
-			open_cmd = "nano "+filename
+			open_cmd = "micro "+filename
 			os.system(open_cmd)
 			show_out_cmd = "cat "+filename
 			print ("\033[2m")
@@ -101,9 +102,9 @@ def new():
 	elif action == ' ':
 		#new entry
 		today = input("Date for entry (format: year-day-month):")
-		filename = today+'.txt'
+		filename = today+'.log'
 		if os.path.isfile(filename):
-			open_cmd = "nano "+filename
+			open_cmd = "micro "+filename
 			os.system(open_cmd)
 			show_out_cmd = "cat "+filename
 			print ("\033[2m")
@@ -115,7 +116,7 @@ def new():
 		else:
 			with open(filename,'w+') as f:
 				f.write(today)
-			open_cmd = "nano "+filename
+			open_cmd = "micro "+filename
 			os.system(open_cmd)
 			show_out_cmd = "cat "+filename
 			print ("\033[2m")
@@ -131,6 +132,11 @@ def main():
 	os.system('clear')
 	title = "figlet M i c r o Log"
 	os.system(title)
+	print ("\n")
+	logs = os.popen('ls *.log').read()
+	logs = str(logs).split()
+	for item in logs:
+		print (item[:-4])
 	print ("\n")
 	print ("\033[2m'o' to open a entry, 'n' to create a new one or 't' to start editing todays entry.\033[0m")
 
