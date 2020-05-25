@@ -4,4 +4,3 @@ Requires: Python3, Linux || Mac OSX
 
 
 <img src="microlog.png">
-Copyright &copy; Edvard Busck-Nielsen 2019
