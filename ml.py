@@ -138,7 +138,7 @@ def main():
 	for item in logs:
 		print (item[:-4])
 	print ("\n")
-	print ("\033[2m'o' to open a entry, 'n' to create a new one or 't' to start editing todays entry.\033[0m")
+	print ("\033[2m'o' to open a entry, 'n' to create a new one or 't' to start editing today's entry.\033[0m")
 
 	action = input("-$: ")
 
@@ -153,7 +153,7 @@ def main():
 		today()
 
 	else:
-		print("\033[2mMicroNote doesn't recognize the command "+action)
+		print("\033[2mMicroLog doesn't recognize the command "+action)
 		tmp = input()
 		main()
 main()
